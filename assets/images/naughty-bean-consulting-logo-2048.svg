@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="2048" height="2048" viewBox="0 0 2048 2048" role="img" aria-labelledby="title desc">
+  <title id="title">Naughty Bean Consulting 2048 logo</title>
+  <desc id="desc">A high-resolution original logo combining a coffee bean, steam, and connected software nodes.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fff7f0"/>
+      <stop offset="100%" stop-color="#efe1d3"/>
+    </linearGradient>
+    <linearGradient id="bean" x1="25%" y1="10%" x2="75%" y2="100%">
+      <stop offset="0%" stop-color="#7a523d"/>
+      <stop offset="100%" stop-color="#3c2417"/>
+    </linearGradient>
+    <linearGradient id="tech" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#23a090"/>
+      <stop offset="100%" stop-color="#0f6a61"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="2048" height="2048" rx="478" fill="url(#bg)"/>
+
+  <circle cx="1622" cy="460" r="154" fill="#ffd2bf" opacity="0.88"/>
+  <circle cx="474" cy="1618" r="214" fill="#d7efe8" opacity="0.96"/>
+
+  <path d="M1024 374c136 136 154 302 52 447" fill="none" stroke="url(#tech)" stroke-linecap="round" stroke-width="68"/>
+  <path d="M1246 436c118 118 138 241 49 369" fill="none" stroke="#d85f3f" stroke-linecap="round" stroke-width="58"/>
+
+  <g transform="translate(358 512)">
+    <path d="M674 0c366 0 656 291 656 648 0 343-273 633-622 648C298 1322 0 1030 0 665 0 300 298 0 674 0Z" fill="url(#bean)"/>
+    <path d="M650 138c-105 105-170 296-170 500 0 201 68 397 184 529" fill="none" stroke="#f4dfd0" stroke-linecap="round" stroke-width="84"/>
+
+    <path d="M1102 228 1372 118" fill="none" stroke="url(#tech)" stroke-linecap="round" stroke-width="46"/>
+    <path d="M1220 470h314" fill="none" stroke="url(#tech)" stroke-linecap="round" stroke-width="46"/>
+    <path d="M1178 739 1428 854" fill="none" stroke="url(#tech)" stroke-linecap="round" stroke-width="46"/>
+
+    <circle cx="1444" cy="90" r="96" fill="url(#tech)"/>
+    <circle cx="1588" cy="470" r="88" fill="#d85f3f"/>
+    <circle cx="1492" cy="882" r="96" fill="url(#tech)"/>
+  </g>
+</svg>
