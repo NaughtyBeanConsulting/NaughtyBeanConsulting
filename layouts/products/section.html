@@ -1,0 +1,48 @@
+{{ define "main" }}
+{{- $products := .Pages.ByWeight -}}
+<section class="phead">
+  <div>
+    <div class="phead__eyebrow">
+      <span class="lbl">Sheet {{ .Params.sheet }}</span>
+      <span class="lbl">Drawing register</span>
+      <span class="lbl">{{ len $products }} sheets</span>
+    </div>
+    <h1 class="phead__title">{{ .Title }}</h1>
+    <p class="phead__lede">{{ .Params.lede | default .Description }}</p>
+  </div>
+  <div class="phead__aside">
+    <span class="lbl">Sorted by status</span>
+  </div>
+</section>
+
+<div class="prose" style="margin-top: 2rem;">{{ .Content }}</div>
+
+<div style="margin-top: 2rem;">
+<table class="reg">
+  <thead>
+    <tr>
+      <th scope="col">No.</th>
+      <th scope="col">Product</th>
+      <th scope="col">What it is</th>
+      <th scope="col">Stack</th>
+      <th scope="col">Status</th>
+      <th scope="col"></th>
+    </tr>
+  </thead>
+  <tbody>
+    {{ range $products }}{{ partial "product-row.html" . }}{{ end }}
+  </tbody>
+</table>
+</div>
+
+{{ partial "section-head.html" (dict "num" "K" "title" "Status key" "note" "How to read the stamps") }}
+<ul class="big-list">
+  <li><span>{{ partial "stamp.html" (dict "status" "live" "size" "sm") }}</span><div><strong>Live</strong><p>In production with paying customers or daily operational use.</p></div></li>
+  <li><span>{{ partial "stamp.html" (dict "status" "build" "size" "sm") }}</span><div><strong>In build</strong><p>Working software, under active development, not yet generally released.</p></div></li>
+  <li><span>{{ partial "stamp.html" (dict "status" "oss" "size" "sm") }}</span><div><strong>Open source</strong><p>Public source under a permissive licence. Self-host it, fork it, send a pull request.</p></div></li>
+  <li><span>{{ partial "stamp.html" (dict "status" "client" "size" "sm") }}</span><div><strong>Client work</strong><p>Built for a client as their engineering partner. Described in general terms only.</p></div></li>
+  <li><span>{{ partial "stamp.html" (dict "status" "internal" "size" "sm") }}</span><div><strong>Internal</strong><p>Built to run our own business. Shown because it is the kind of tool we can build for yours.</p></div></li>
+</ul>
+
+{{ partial "rfq-band.html" . }}
+{{ end }}

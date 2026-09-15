@@ -1,0 +1,53 @@
+{{ define "main" }}
+<section class="phead">
+  <div>
+    <div class="phead__eyebrow">
+      <span class="lbl">Sheet {{ .Params.sheet }}</span>
+      <span class="lbl">General arrangement</span>
+      <span class="lbl">Rev {{ .Params.rev | default "A" }}</span>
+    </div>
+    <h1 class="phead__title">{{ .Params.heading | default .Title }}</h1>
+    <p class="phead__lede">{{ .Params.lede }}</p>
+  </div>
+  <div class="phead__aside">
+    <span class="stamp stamp--lg stamp--live" data-stamp>Est. 2024</span>
+  </div>
+</section>
+
+<div class="split">
+  <div class="prose">{{ .Content }}</div>
+  <aside class="aside-stack">
+    <div class="kv">
+      <div class="kv__row"><span class="lbl">Studio</span><span class="kv__val">Naughty Bean Consulting</span></div>
+      <div class="kv__row"><span class="lbl">Lead</span><span class="kv__val">Shaun De Ponte</span></div>
+      <div class="kv__row"><span class="lbl">Where</span><span class="kv__val">South Africa · remote</span></div>
+      <div class="kv__row"><span class="lbl">Since</span><span class="kv__val">2024</span></div>
+      <div class="kv__row"><span class="lbl">Sister brand</span><span class="kv__val"><a href="https://www.naughtybean.coffee/" rel="noopener">Naughty Bean Coffee</a></span></div>
+      <div class="kv__row"><span class="lbl">Open source</span><span class="kv__val"><a href="{{ site.Params.github }}" rel="noopener">github.com/NaughtyBeanConsulting</a></span></div>
+    </div>
+    <div class="notes">
+      <div class="notes__head"><span class="lbl">Default bill of materials</span></div>
+      <ol class="notes__list">
+        <li>Python and Django, PostgreSQL.</li>
+        <li>HTMX and Alpine.js over a full front-end framework, until the interface actually needs one.</li>
+        <li>Tailwind, compiled with the standalone CLI. No Node in the deploy path unless a sidecar needs it.</li>
+        <li>NestJS, React and FastAPI where a client's estate already speaks TypeScript or the job is AI extraction.</li>
+        <li>AWS in CDK for platforms; one tidy VM for everything that does not need more.</li>
+        <li>GitHub for source, Actions for CI, Sentry for the 2 a.m. page.</li>
+      </ol>
+    </div>
+  </aside>
+</div>
+
+{{ partial "section-head.html" (dict "num" "1" "title" "How we work" "note" "Working notes" "id" "how") }}
+<ol class="spec spec--grid">
+  <li class="spec__item"><span class="spec__no">1.1</span><div><h3 class="spec__title">Operators first</h3><div class="spec__body"><p>We run a coffee business and use our own software behind the counter. That habit of living with the consequences shapes every build: fewer clever abstractions, more thought about what happens when the internet drops mid-shift.</p></div></div></li>
+  <li class="spec__item"><span class="spec__no">1.2</span><div><h3 class="spec__title">Small on purpose</h3><div class="spec__body"><p>You talk to the person writing the code. Decisions are made in the conversation, not relayed through an account manager three days later.</p></div></div></li>
+  <li class="spec__item"><span class="spec__no">1.3</span><div><h3 class="spec__title">Boring technology</h3><div class="spec__body"><p>Django and PostgreSQL have been unfashionable and reliable for fifteen years. We pick tools your next developer can hire for, and we write down why.</p></div></div></li>
+  <li class="spec__item"><span class="spec__no">1.4</span><div><h3 class="spec__title">Your code, your accounts</h3><div class="spec__body"><p>Source lives in your repository from the first commit. Infrastructure lives in your cloud account. If we part ways, you keep everything and it keeps running.</p></div></div></li>
+  <li class="spec__item"><span class="spec__no">1.5</span><div><h3 class="spec__title">Straight answers</h3><div class="spec__body"><p>If a brief is a bad idea, or a PWA will do the job of the native app you asked for, or a spreadsheet is honestly fine for now, we say so before you spend money.</p></div></div></li>
+  <li class="spec__item"><span class="spec__no">1.6</span><div><h3 class="spec__title">Shipped beats perfect</h3><div class="spec__body"><p>Weekly releases to a staging URL from week one. Real users on real data as early as it is safe. Polish follows evidence.</p></div></div></li>
+</ol>
+
+{{ partial "rfq-band.html" . }}
+{{ end }}

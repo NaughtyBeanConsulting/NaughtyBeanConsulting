@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="">
+<head>
+  {{ partial "head.html" . }}
+</head>
+<body class="kind-{{ .Kind }}{{ with .Section }} section-{{ . }}{{ end }}">
+  <a class="skip" href="#main">Skip to content</a>
+  <div class="frame" aria-hidden="true">
+    <span class="frame__mark frame__mark--tl"></span>
+    <span class="frame__mark frame__mark--tr"></span>
+    <span class="frame__mark frame__mark--bl"></span>
+    <span class="frame__mark frame__mark--br"></span>
+  </div>
+
+  {{ partial "header.html" . }}
+
+  <main id="main" class="sheet">
+    {{ block "main" . }}{{ end }}
+  </main>
+
+  {{ partial "title-block.html" . }}
+
+  <script src="{{ "js/site.js" | relURL }}" defer></script>
+  {{ block "scripts" . }}{{ end }}
+</body>
+</html>

@@ -1,0 +1,128 @@
+{{ define "main" }}
+{{- $products := (where site.RegularPages "Section" "products").ByWeight -}}
+{{- $idx := 0 -}}
+{{- range $k, $p := $products }}{{ if eq $p.Permalink $.Permalink }}{{ $idx = $k }}{{ end }}{{ end -}}
+{{- $prev := cond (gt $idx 0) (index $products (sub $idx 1)) nil -}}
+{{- $next := cond (lt (add $idx 1) (len $products)) (index $products (add $idx 1)) nil -}}
+
+<section class="phead">
+  <div>
+    <div class="phead__eyebrow">
+      <span class="lbl">Sheet {{ .Params.sheet }}</span>
+      <span class="lbl">Product</span>
+      <span class="lbl">Rev {{ .Params.rev | default "A" }}</span>
+      {{ with .Params.customer }}<span class="lbl">{{ . }}</span>{{ end }}
+    </div>
+    <h1 class="phead__title">{{ .Title }}</h1>
+    <p class="phead__lede">{{ .Params.tagline }}</p>
+  </div>
+  <div class="phead__aside">
+    {{ partial "stamp.html" (dict "status" .Params.status "size" "lg") }}
+    {{ with .Params.link }}<a class="btn" href="{{ . }}" rel="noopener">{{ $.Params.linkLabel | default . }} ↗</a>{{ end }}
+  </div>
+</section>
+
+<div class="prod__grid">
+  <div class="prod__main">
+    <div class="prose">{{ .Content }}</div>
+
+    {{ with .Params.diagram }}
+    <div class="prod__section">
+      {{ partial "diagram.html" (dict "diagram" . "fig" "2" "title" "System diagram") }}
+    </div>
+    {{ end }}
+
+    {{ with .Params.features }}
+    <div class="prod__section">
+      <div class="notes notes--2col">
+        <div class="notes__head"><span class="lbl">Notes — what it does</span></div>
+        <ol class="notes__list">
+          {{ range . }}<li>{{ . | markdownify }}</li>{{ end }}
+        </ol>
+      </div>
+    </div>
+    {{ end }}
+
+    {{ with .Params.stack }}
+    <div class="prod__section">
+      <table class="bom">
+        <caption class="lbl" style="text-align:left; padding: 0 0 .6rem;">Bill of materials</caption>
+        <thead><tr><th scope="col">Item</th><th scope="col">Layer</th><th scope="col">Component</th></tr></thead>
+        <tbody>
+          {{ range $i, $row := . }}
+          <tr>
+            <td class="bom__no">{{ printf "%02d" (add $i 1) }}</td>
+            <td class="bom__layer">{{ index $row 0 }}</td>
+            <td class="bom__item">{{ index $row 1 }}</td>
+          </tr>
+          {{ end }}
+        </tbody>
+      </table>
+    </div>
+    {{ end }}
+
+    {{ with .Params.integrations }}
+    <div class="prod__section">
+      <p class="lbl" style="margin-bottom:.6rem;">Integrations</p>
+      <div class="tags">{{ range . }}<span class="tag">{{ . }}</span>{{ end }}</div>
+    </div>
+    {{ end }}
+  </div>
+
+  <aside class="prod__aside">
+    {{ with .Params.mark }}
+    <figure class="fig fig--mark">
+      <figcaption class="fig__cap"><span class="lbl">Fig. 1</span> Mark</figcaption>
+      <div class="fig__body"><img src="{{ . | relURL }}" alt="{{ $.Title }} logo" loading="lazy" width="240" height="240"></div>
+    </figure>
+    {{ end }}
+    <div class="kv">
+      <div class="kv__row"><span class="lbl">Status</span><span class="kv__val">{{ partial "stamp.html" (dict "status" .Params.status "size" "sm") }}</span></div>
+      {{ with .Params.customer }}<div class="kv__row"><span class="lbl">For</span><span class="kv__val">{{ . }}</span></div>{{ end }}
+      {{ with .Params.link }}<div class="kv__row"><span class="lbl">Address</span><span class="kv__val"><a href="{{ . }}" rel="noopener">{{ $.Params.linkLabel | default . }}</a></span></div>{{ end }}
+      {{ with .Params.repo }}<div class="kv__row"><span class="lbl">Source</span><span class="kv__val"><a href="{{ . }}" rel="noopener">{{ $.Params.repoLabel | default "GitHub" }}</a></span></div>{{ end }}
+      {{ with .Params.licence }}<div class="kv__row"><span class="lbl">Licence</span><span class="kv__val">{{ . }}</span></div>{{ end }}
+      {{ with .Params.stackShort }}<div class="kv__row"><span class="lbl">Stack</span><span class="kv__val">{{ delimit . " · " }}</span></div>{{ end }}
+      <div class="kv__row"><span class="lbl">Sheet</span><span class="kv__val">{{ .Params.sheet }} · Rev {{ .Params.rev | default "A" }}</span></div>
+    </div>
+    <div class="notes">
+      <div class="notes__head"><span class="lbl">Want one like this?</span></div>
+      <div style="padding: .9rem;">
+        <p style="color: var(--ink-2); margin-bottom: .9rem;">We can build a system like {{ .Title }} for your business, or adapt this one.</p>
+        <a class="btn btn--red btn--block" href="{{ "/contact/" | relURL }}?re={{ .Title | urlquery }}">Request a build</a>
+      </div>
+    </div>
+  </aside>
+</div>
+
+<nav class="prodnav" aria-label="Adjacent sheets">
+  {{ with $prev }}
+  <a class="prodnav__prev" href="{{ .RelPermalink }}">
+    <span class="lbl">← Previous · Sheet {{ .Params.sheet }}</span>
+    <span class="prodnav__name">{{ .Title }}</span>
+  </a>
+  {{ else }}
+  <a class="prodnav__prev" href="{{ "/products/" | relURL }}">
+    <span class="lbl">← Register</span>
+    <span class="prodnav__name">All products</span>
+  </a>
+  {{ end }}
+  {{ with $next }}
+  <a class="prodnav__next" href="{{ .RelPermalink }}">
+    <span class="lbl">Next · Sheet {{ .Params.sheet }} →</span>
+    <span class="prodnav__name">{{ .Title }}</span>
+  </a>
+  {{ else }}
+  <a class="prodnav__next" href="{{ "/products/" | relURL }}">
+    <span class="lbl">Register →</span>
+    <span class="prodnav__name">All products</span>
+  </a>
+  {{ end }}
+</nav>
+
+{{ partial "rfq-band.html" . }}
+{{ end }}
+
+{{ define "scripts" }}
+{{ if .Params.diagram }}<script src="{{ "js/diagram.js" | relURL }}" defer></script>{{ end }}
+{{ end }}

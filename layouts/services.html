@@ -1,0 +1,94 @@
+{{ define "main" }}
+<section class="phead">
+  <div>
+    <div class="phead__eyebrow">
+      <span class="lbl">Sheet {{ .Params.sheet }}</span>
+      <span class="lbl">Specification</span>
+      <span class="lbl">Rev {{ .Params.rev | default "A" }}</span>
+    </div>
+    <h1 class="phead__title">{{ .Params.heading | default .Title }}</h1>
+    <p class="phead__lede">{{ .Params.lede }}</p>
+  </div>
+  <div class="phead__aside">
+    <a class="btn btn--red" href="{{ "/contact/" | relURL }}">Request a build</a>
+  </div>
+</section>
+
+<div class="prose" style="margin-top: clamp(1.5rem, 4vw, 3rem);">{{ .Content }}</div>
+
+{{ partial "section-head.html" (dict "num" "1" "title" "Web applications" "note" "Clause 1.0" "id" "web") }}
+<ol class="spec">
+  <li class="spec__item"><span class="spec__no">1.1</span><div><h3 class="spec__title">Portals and storefronts</h3><div class="spec__body"><p>Customer-facing web apps, server-rendered with HTMX and Alpine.js so they load fast on a phone on a bad connection and still feel instant. Ordering, booking, accounts, self-service.</p></div></div></li>
+  <li class="spec__item"><span class="spec__no">1.2</span><div><h3 class="spec__title">Back-office systems</h3><div class="spec__body"><p>Order management, stock, billing, reporting, approvals, and the role-based admin that every business needs and nobody budgets for. We have built point of sale, payroll and operations portals from scratch, so we know where the bodies are buried.</p></div></div></li>
+  <li class="spec__item"><span class="spec__no">1.3</span><div><h3 class="spec__title">Content-managed sites</h3><div class="spec__body"><p>Marketing sites and e-commerce where you edit pages, menus, products and theme colours yourself. No developer on the critical path for a price change.</p></div></div></li>
+  <li class="spec__item"><span class="spec__no">1.4</span><div><h3 class="spec__title">APIs</h3><div class="spec__body"><p>Headless REST APIs with django-ninja or NestJS when a separate front end, a mobile app or a partner needs to talk to the system. Documented with OpenAPI, versioned, authenticated with keys or sessions.</p><div class="spec__tags"><span class="tag">Django</span><span class="tag">PostgreSQL</span><span class="tag">HTMX</span><span class="tag">Alpine.js</span><span class="tag">Tailwind</span><span class="tag">NestJS</span><span class="tag">React</span><span class="tag">Next.js</span></div></div></div></li>
+</ol>
+
+{{ partial "section-head.html" (dict "num" "2" "title" "Mobile apps" "note" "Clause 2.0" "id" "mobile") }}
+<ol class="spec">
+  <li class="spec__item"><span class="spec__no">2.1</span><div><h3 class="spec__title">Installable progressive web apps</h3><div class="spec__body"><p>Home-screen icon, full-screen, service worker, one codebase. Our POS terminal, barista app and customer ordering app all ship this way and behave like native apps on the devices people actually own.</p></div></div></li>
+  <li class="spec__item"><span class="spec__no">2.2</span><div><h3 class="spec__title">Field and counter tools</h3><div class="spec__body"><p>Interfaces designed for one hand, poor light and a hurry: tills, clock-in stations, checklists with photo evidence, stock-take flows. Big targets, few taps, obvious state.</p></div></div></li>
+  <li class="spec__item"><span class="spec__no">2.3</span><div><h3 class="spec__title">Native builds</h3><div class="spec__body"><p>When the brief needs hardware access or app-store distribution that a PWA cannot give, we scope a native iOS and Android build on top of the same API. We will tell you plainly if you do not need one.</p><div class="spec__tags"><span class="tag">PWA</span><span class="tag">Service workers</span><span class="tag">Web push</span><span class="tag">iOS</span><span class="tag">Android</span></div></div></div></li>
+</ol>
+
+{{ partial "section-head.html" (dict "num" "3" "title" "SaaS platforms" "note" "Clause 3.0" "id" "saas") }}
+<ol class="spec">
+  <li class="spec__item"><span class="spec__no">3.1</span><div><h3 class="spec__title">Multi-tenant architecture</h3><div class="spec__body"><p>One PostgreSQL schema per tenant where isolation matters most, or row-level security in a shared schema where scale matters more. We have shipped both and can explain the trade-off in ten minutes.</p></div></div></li>
+  <li class="spec__item"><span class="spec__no">3.2</span><div><h3 class="spec__title">Billing and entitlements</h3><div class="spec__body"><p>Flat plans, commission models, usage limits and add-on modules, decided at runtime by an entitlement engine so a plan change is configuration, not a deployment. Recurring billing via Paystack or Stripe.</p></div></div></li>
+  <li class="spec__item"><span class="spec__no">3.3</span><div><h3 class="spec__title">Custom domains and branding</h3><div class="spec__body"><p>Tenants on their own subdomain or their own domain, with certificates issued automatically when they point DNS at you. Per-tenant logos, colours and e-mail templates.</p></div></div></li>
+  <li class="spec__item"><span class="spec__no">3.4</span><div><h3 class="spec__title">Access and audit</h3><div class="spec__body"><p>Role-based access per organisation, invitations, MFA, session revocation and append-only audit trails. The admin console the founder needs on day one, not in year two.</p><div class="spec__tags"><span class="tag">django-tenants</span><span class="tag">Row-level security</span><span class="tag">Paystack</span><span class="tag">Stripe</span><span class="tag">Automated TLS</span></div></div></div></li>
+</ol>
+
+{{ partial "section-head.html" (dict "num" "4" "title" "Integrations" "note" "Clause 4.0" "id" "integrations") }}
+<ol class="spec">
+  <li class="spec__item"><span class="spec__no">4.1</span><div><h3 class="spec__title">Payments</h3><div class="spec__body"><p>Yoco, PayFast, Stripe, Paystack, iKhokha and Stitch. Webhooks that survive retries, reconciliation, refunds, and per-country routing when one platform serves many markets.</p></div></div></li>
+  <li class="spec__item"><span class="spec__no">4.2</span><div><h3 class="spec__title">Messaging</h3><div class="spec__body"><p>Twilio WhatsApp Business API with approved templates, signed webhooks and inbound automation. Transactional e-mail through Resend, SendGrid or Mailgun with proper domain authentication.</p></div></div></li>
+  <li class="spec__item"><span class="spec__no">4.3</span><div><h3 class="spec__title">Accounting and payroll</h3><div class="spec__body"><p>Xero sales exports that tie out to the cent, Sage Accounting timesheets, SARS-compliant VAT, bank EFT file formats for the major South African banks, EMP201 and IRP5 outputs.</p></div></div></li>
+  <li class="spec__item"><span class="spec__no">4.4</span><div><h3 class="spec__title">Logistics and hardware</h3><div class="spec__body"><p>Courier APIs for live rates and tracking, espresso-machine telemetry, water-quality sensors and biometric clock-in terminals over their LAN protocols. If it has an API we will integrate it; if it does not, we will reverse-engineer it and document what we find.</p><div class="spec__tags"><span class="tag">Yoco</span><span class="tag">PayFast</span><span class="tag">Stripe</span><span class="tag">Paystack</span><span class="tag">iKhokha</span><span class="tag">Stitch</span><span class="tag">Twilio</span><span class="tag">Xero</span><span class="tag">Sage</span><span class="tag">The Courier Guy</span><span class="tag">Flow Coffee</span><span class="tag">WaterTDS</span><span class="tag">Hikvision ISAPI</span><span class="tag">Google Places</span></div></div></div></li>
+</ol>
+
+{{ partial "section-head.html" (dict "num" "5" "title" "Cloud &amp; delivery" "note" "Clause 5.0" "id" "cloud") }}
+<ol class="spec">
+  <li class="spec__item"><span class="spec__no">5.1</span><div><h3 class="spec__title">AWS, defined in code</h3><div class="spec__body"><p>ECS, RDS, WAF and multi-account landing zones with Control Tower, all in CDK. Separate accounts per environment and, for enterprise customers, per tenant. Deploys through GitHub Actions with OIDC, no long-lived keys.</p></div></div></li>
+  <li class="spec__item"><span class="spec__no">5.2</span><div><h3 class="spec__title">Right-sized hosting</h3><div class="spec__body"><p>A single well-kept VM with nginx, systemd and PostgreSQL is a legitimate architecture for a great many businesses. We will not sell you Kubernetes for a coffee shop.</p></div></div></li>
+  <li class="spec__item"><span class="spec__no">5.3</span><div><h3 class="spec__title">Pipelines and promotion</h3><div class="spec__body"><p>CI that runs the tests, scans dependencies and secrets, builds one image and promotes that same verified image from development through QA and staging to production.</p></div></div></li>
+  <li class="spec__item"><span class="spec__no">5.4</span><div><h3 class="spec__title">Monitoring and runbooks</h3><div class="spec__body"><p>Sentry, CloudWatch, uptime checks and a post-deploy gate that confirms the thing actually works before the pipeline goes green. A runbook you can follow at 2 a.m.</p><div class="spec__tags"><span class="tag">AWS</span><span class="tag">CDK</span><span class="tag">ECS</span><span class="tag">RDS</span><span class="tag">Control Tower</span><span class="tag">GitHub Actions</span><span class="tag">Sentry</span><span class="tag">nginx</span><span class="tag">systemd</span></div></div></div></li>
+</ol>
+
+{{ partial "section-head.html" (dict "num" "6" "title" "Security" "note" "Clause 6.0" "id" "security") }}
+<ol class="spec">
+  <li class="spec__item"><span class="spec__no">6.1</span><div><h3 class="spec__title">Penetration-test remediation</h3><div class="spec__body"><p>From a findings report to a closed-out evidence pack: triage, fixes, regression tests, and the management summary the auditor asks for.</p></div></div></li>
+  <li class="spec__item"><span class="spec__no">6.2</span><div><h3 class="spec__title">Tenant isolation</h3><div class="spec__body"><p>Schema separation, PostgreSQL row-level security, and access checks that run before any data is touched. Tested with a harness that tries to read across tenants and must fail.</p></div></div></li>
+  <li class="spec__item"><span class="spec__no">6.3</span><div><h3 class="spec__title">Hardening</h3><div class="spec__body"><p>MFA, session management and revocation, WAF rules, rate limiting, dependency and secret scanning in CI, and POPIA-aware handling of personal information.</p></div></div></li>
+  <li class="spec__item"><span class="spec__no">6.4</span><div><h3 class="spec__title">Scutiva</h3><div class="spec__body"><p>Our open-source, agentless posture and SBOM tool for Linux fleets. Self-hosted, SSH-based, nothing leaves your network. <a href="{{ "/products/scutiva/" | relURL }}">Sheet P-08</a>.</p><div class="spec__tags"><span class="tag">OWASP</span><span class="tag">MFA</span><span class="tag">Row-level security</span><span class="tag">Audit trails</span><span class="tag">POPIA</span><span class="tag">SBOM</span></div></div></div></li>
+</ol>
+
+{{ partial "section-head.html" (dict "num" "7" "title" "AI features" "note" "Clause 7.0" "id" "ai") }}
+<ol class="spec">
+  <li class="spec__item"><span class="spec__no">7.1</span><div><h3 class="spec__title">Document extraction</h3><div class="spec__body"><p>Bills, leases, invoices and statements read into structured data, validated against the printed totals so a model cannot quietly drop a digit or a minus sign.</p></div></div></li>
+  <li class="spec__item"><span class="spec__no">7.2</span><div><h3 class="spec__title">Conversational intake</h3><div class="spec__body"><p>WhatsApp orders and support requests parsed into orders and tickets, with a human confirming anything the model is unsure about.</p></div></div></li>
+  <li class="spec__item"><span class="spec__no">7.3</span><div><h3 class="spec__title">Plainly</h3><div class="spec__body"><p>We call model APIs directly through OpenRouter or the provider. No agent frameworks, no vector database unless retrieval is the actual problem, and no AI feature that does not have a measurable job.</p><div class="spec__tags"><span class="tag">OpenRouter</span><span class="tag">Claude</span><span class="tag">FastAPI</span><span class="tag">Human in the loop</span></div></div></div></li>
+</ol>
+
+{{ partial "section-head.html" (dict "num" "E" "title" "Exclusions" "note" "Things we do not do" "id" "exclusions") }}
+<div class="notes">
+  <ol class="notes__list">
+    <li>WordPress page builders, theme customisation and plugin archaeology.</li>
+    <li>Strategy decks with no implementation attached.</li>
+    <li>"Quick MVPs" we would not be willing to run in production ourselves.</li>
+    <li>Blockchain.</li>
+  </ol>
+</div>
+
+{{ partial "section-head.html" (dict "num" "C" "title" "Commercial terms" "note" "How we charge" "id" "terms") }}
+<table class="revs">
+  <thead><tr><th scope="col">Ref</th><th scope="col">Model</th><th scope="col">When it fits</th><th scope="col">Basis</th></tr></thead>
+  <tbody>
+    <tr><td class="revs__rev">C1</td><td class="revs__stage">Fixed-price build</td><td class="revs__desc">A defined product with a scope we can draw up at Rev B. Most builds on the register started this way.</td><td class="revs__out">Fixed quote · milestones · Rand</td></tr>
+    <tr><td class="revs__rev">C2</td><td class="revs__stage">Retainer</td><td class="revs__desc">Running, monitoring and improving a live system month to month. Priority response, a standing backlog, no re-quoting for small work.</td><td class="revs__out">Monthly · agreed hours · rolling</td></tr>
+    <tr><td class="revs__rev">C3</td><td class="revs__stage">Time and materials</td><td class="revs__desc">Discovery, audits, penetration-test remediation and anything genuinely open-ended. Estimated up front, billed on actuals, reported weekly.</td><td class="revs__out">Day rate · weekly report</td></tr>
+  </tbody>
+</table>
+
+{{ partial "rfq-band.html" . }}
+{{ end }}

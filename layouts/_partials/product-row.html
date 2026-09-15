@@ -1,0 +1,12 @@
+{{- /* One row of the drawing register. Context: a product page. */ -}}
+<tr class="reg__row">
+  <td class="reg__no"><a href="{{ .RelPermalink }}" class="reg__rowlink" aria-label="{{ .Title }}">{{ .Params.sheet }}</a></td>
+  <td class="reg__name">
+    <a href="{{ .RelPermalink }}" tabindex="-1">{{ .Title }}</a>
+    <span class="reg__what">{{ .Params.tagline }}</span>
+  </td>
+  <td class="reg__what-col">{{ .Params.tagline }}</td>
+  <td class="reg__stack">{{ delimit .Params.stackShort " · " }}</td>
+  <td class="reg__status">{{ partial "stamp.html" (dict "status" .Params.status "size" "sm") }}</td>
+  <td class="reg__arrow" aria-hidden="true">→</td>
+</tr>

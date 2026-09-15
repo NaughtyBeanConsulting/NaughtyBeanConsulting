@@ -1,0 +1,4 @@
+{{- /* Rubber-stamp status mark. Usage: partial "stamp.html" (dict "status" .Params.status "size" "lg") */ -}}
+{{- $s := .status | default "internal" -}}
+{{- $label := index (dict "live" "Live" "build" "In build" "oss" "Open source" "internal" "Internal" "client" "Client work") $s | default $s -}}
+<span class="stamp stamp--{{ $s }}{{ with .size }} stamp--{{ . }}{{ end }}" data-stamp>{{ $label }}</span>

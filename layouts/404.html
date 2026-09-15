@@ -1,0 +1,22 @@
+{{ define "main" }}
+<section class="notfound">
+  <section class="phead">
+    <div>
+      <div class="phead__eyebrow">
+        <span class="lbl">Sheet —</span>
+        <span class="lbl">Not in register</span>
+        <span class="lbl">404</span>
+      </div>
+      <h1 class="phead__title">This sheet was never drawn.</h1>
+      <p class="phead__lede">The address you followed does not match anything in the drawing set. It may have been superseded, or it may never have existed.</p>
+    </div>
+    <div class="phead__aside">
+      <span class="stamp stamp--lg stamp--build" data-stamp>Void</span>
+    </div>
+  </section>
+  <div class="hero__actions" style="margin-top: 2rem;">
+    <a class="btn btn--red btn--lg" href="{{ "/" | relURL }}">Back to the index</a>
+    <a class="btn btn--lg" href="{{ "/products/" | relURL }}">Drawing register</a>
+  </div>
+</section>
+{{ end }}
