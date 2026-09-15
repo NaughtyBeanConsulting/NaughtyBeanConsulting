@@ -1,0 +1,7 @@
+{{- /* Callout-style section heading. Usage: partial "section-head.html" (dict "num" "1" "title" "Index of sheets" "note" "optional right-hand note" "id" "index") */ -}}
+<div class="shead"{{ with .id }} id="{{ . }}"{{ end }}>
+  <span class="shead__callout" aria-hidden="true">{{ .num }}</span>
+  <h2 class="shead__title">{{ .title }}</h2>
+  <span class="shead__rule" aria-hidden="true"></span>
+  {{ with .note }}<span class="shead__note lbl">{{ . }}</span>{{ end }}
+</div>

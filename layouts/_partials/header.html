@@ -1,0 +1,59 @@
+{{- $sheet := .Params.sheet | default (cond .IsHome "00" "—") -}}
+{{- $sheetTitle := .Params.sheetTitle | default (cond .IsHome "Index" .Title) -}}
+<header class="hdr">
+  <a class="brand" href="{{ "/" | relURL }}" aria-label="Naughty Bean Consulting, home">
+    <svg class="brand__mark" viewBox="0 0 48 48" aria-hidden="true">
+      <rect x="1.5" y="1.5" width="45" height="45" fill="none" stroke="currentColor" stroke-width="1.5"/>
+      <g transform="rotate(-32 24 24)">
+        <ellipse cx="24" cy="24" rx="10" ry="14.5" fill="none" stroke="currentColor" stroke-width="1.75"/>
+        <path d="M24 9.5c-4.5 5-4.5 9.5 0 14.5s4.5 9.5 0 14.5" fill="none" stroke="currentColor" stroke-width="1.5"/>
+      </g>
+      <path d="M24 3.5v5M24 39.5v5M3.5 24h5M39.5 24h5" stroke="currentColor" stroke-width="1"/>
+    </svg>
+    <span class="brand__text">
+      <span class="brand__name">Naughty Bean</span>
+      <span class="brand__sub">Consulting</span>
+    </span>
+  </a>
+
+  <div class="hdr__sheet" aria-label="Current sheet">
+    <span class="lbl">Sheet</span>
+    <span class="hdr__sheetno">{{ $sheet }}</span>
+    <span class="hdr__sheettitle">{{ $sheetTitle }}</span>
+  </div>
+
+  <nav class="nav" aria-label="Primary">
+    {{ range site.Menus.main }}
+      {{- $active := or ($.IsMenuCurrent "main" .) ($.HasMenuCurrent "main" .) (and (eq $.Section "products") (eq .URL "/products/")) -}}
+      <a class="nav__link{{ if $active }} is-active{{ end }}" href="{{ .URL | relURL }}"{{ if $active }} aria-current="page"{{ end }}>
+        <span class="nav__idx">{{ .Params.index }}</span>{{ .Name }}
+      </a>
+    {{ end }}
+    <button class="theme-toggle" type="button" data-theme-toggle aria-label="Switch between paper and blueprint colour schemes">
+      <span class="theme-toggle__opt" data-opt="paper">Paper</span>
+      <span class="theme-toggle__sep">/</span>
+      <span class="theme-toggle__opt" data-opt="blueprint">Blueprint</span>
+    </button>
+    <a class="btn btn--red nav__cta" href="{{ "/contact/" | relURL }}">Request a build</a>
+  </nav>
+
+  <button class="menu-btn" type="button" data-menu-toggle aria-expanded="false" aria-controls="mobile-nav">
+    <span data-menu-label>Menu</span>
+  </button>
+</header>
+
+<nav class="mnav" id="mobile-nav" data-mobile-nav aria-label="Mobile" hidden>
+  <ol class="mnav__list">
+    {{ range site.Menus.main }}
+      <li><a href="{{ .URL | relURL }}"><span class="nav__idx">{{ .Params.index }}</span>{{ .Name }}</a></li>
+    {{ end }}
+  </ol>
+  <div class="mnav__foot">
+    <button class="theme-toggle" type="button" data-theme-toggle aria-label="Switch between paper and blueprint colour schemes">
+      <span class="theme-toggle__opt" data-opt="paper">Paper</span>
+      <span class="theme-toggle__sep">/</span>
+      <span class="theme-toggle__opt" data-opt="blueprint">Blueprint</span>
+    </button>
+    <a class="btn btn--red" href="{{ "/contact/" | relURL }}">Request a build</a>
+  </div>
+</nav>

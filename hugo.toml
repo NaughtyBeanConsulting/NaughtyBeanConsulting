@@ -1,0 +1,59 @@
+baseURL = "https://naughtybean.consulting/"
+locale = "en-ZA"
+title = "Naughty Bean Consulting"
+disableKinds = ["taxonomy", "term", "rss"]
+enableRobotsTXT = false
+timeZone = "Africa/Johannesburg"
+
+[params]
+  description = "Naughty Bean Consulting is a South African software engineering studio. We design, build and run web apps, mobile apps and multi-tenant SaaS platforms, for ourselves and for clients."
+  email = "hello@naughtybean.consulting"
+  github = "https://github.com/NaughtyBeanConsulting"
+  drawnBy = "NBC"
+  socialImage = "img/og.png"
+  # Contact form delivery. FormSubmit needs a one-time activation e-mail on
+  # the first submission. Swap for a Web3Forms/Formspree endpoint if preferred.
+  formEndpoint = "https://formsubmit.co/ajax/hello@naughtybean.consulting"
+
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true
+  [markup.tableOfContents]
+    startLevel = 2
+    endLevel = 2
+
+[menu]
+  [[menu.main]]
+    name = "Products"
+    url = "/products/"
+    weight = 10
+    [menu.main.params]
+      index = "01"
+  [[menu.main]]
+    name = "Services"
+    url = "/services/"
+    weight = 20
+    [menu.main.params]
+      index = "02"
+  [[menu.main]]
+    name = "About"
+    url = "/about/"
+    weight = 30
+    [menu.main.params]
+      index = "03"
+  [[menu.main]]
+    name = "Contact"
+    url = "/contact/"
+    weight = 40
+    [menu.main.params]
+      index = "04"
+
+[sitemap]
+  changefreq = "monthly"
+  priority = 0.5
+
+[outputs]
+  home = ["HTML"]
+  section = ["HTML"]
+  page = ["HTML"]

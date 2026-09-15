@@ -1,0 +1,179 @@
+{{ define "main" }}
+{{- $products := (where site.RegularPages "Section" "products").ByWeight -}}
+
+<section class="hero">
+  <div class="hero__copy">
+    <div class="hero__eyebrow">
+      <span class="lbl">Sheet 00</span>
+      <span class="lbl">Index</span>
+      <span class="lbl">Rev {{ .Params.rev | default "A" }}</span>
+      <span class="lbl">Software engineering · South Africa</span>
+    </div>
+    <h1 class="hero__title" id="hero-title">Software,<br>drawn to <em>scale.</em></h1>
+    <div class="dim" data-dim-of="#hero-title" aria-hidden="true">
+      <span class="dim__line"></span>
+      <span class="dim__label" data-dim-label>— px</span>
+    </div>
+    <p class="hero__lede">Naughty Bean Consulting is a small South African software engineering studio. We design, build and run web apps, mobile apps and multi-tenant SaaS platforms. Some of them are ours. The next one could be yours.</p>
+    <div class="hero__actions">
+      <a class="btn btn--red btn--lg" href="{{ "/contact/" | relURL }}">Request a build</a>
+      <a class="btn btn--lg" href="#register">Index of products</a>
+    </div>
+  </div>
+
+  <aside class="legend" aria-label="Legend: what we build">
+    <div class="legend__head">
+      <span class="lbl">Legend</span>
+      <span class="lbl">What we build</span>
+    </div>
+    <ul class="legend__list">
+      <li class="legend__item">
+        <span class="legend__sym" aria-hidden="true"><svg viewBox="0 0 20 20"><rect x="1.5" y="3" width="17" height="14"/><path d="M1.5 7h17M5 5h.01M7.5 5h.01"/></svg></span>
+        <span><span class="legend__name">Web applications</span><span class="legend__note">Portals, storefronts, back-offices, admin tooling.</span></span>
+      </li>
+      <li class="legend__item">
+        <span class="legend__sym" aria-hidden="true"><svg viewBox="0 0 20 20"><rect x="5" y="1.5" width="10" height="17" rx="1.5"/><path d="M8.5 15.5h3"/></svg></span>
+        <span><span class="legend__name">Mobile apps</span><span class="legend__note">Installable PWAs first. Native when it earns its place.</span></span>
+      </li>
+      <li class="legend__item">
+        <span class="legend__sym" aria-hidden="true"><svg viewBox="0 0 20 20"><rect x="2" y="2" width="11" height="11"/><path d="M7 7h11v11H7z"/></svg></span>
+        <span><span class="legend__name">SaaS platforms</span><span class="legend__note">Multi-tenant, billed, on your customers' own domains.</span></span>
+      </li>
+      <li class="legend__item">
+        <span class="legend__sym" aria-hidden="true"><svg viewBox="0 0 20 20"><path d="M2 7h13M12 4l3 3-3 3M18 13H5M8 10l-3 3 3 3"/></svg></span>
+        <span><span class="legend__name">Integrations</span><span class="legend__note">Payments, WhatsApp, accounting, couriers, hardware.</span></span>
+      </li>
+      <li class="legend__item">
+        <span class="legend__sym" aria-hidden="true"><svg viewBox="0 0 20 20"><path d="M5.5 15.5h9a4 4 0 0 0 .5-8 5.5 5.5 0 0 0-10.5 1.5A3.3 3.3 0 0 0 5.5 15.5z"/></svg></span>
+        <span><span class="legend__name">Cloud &amp; delivery</span><span class="legend__note">AWS, infrastructure as code, CI/CD, monitoring.</span></span>
+      </li>
+      <li class="legend__item">
+        <span class="legend__sym" aria-hidden="true"><svg viewBox="0 0 20 20"><path d="M10 1.5l7 3v5c0 4.5-3 7.8-7 9-4-1.2-7-4.5-7-9v-5z"/><path d="M7 10l2 2 4-4"/></svg></span>
+        <span><span class="legend__name">Security</span><span class="legend__note">Pentest remediation, tenant isolation, audit trails.</span></span>
+      </li>
+    </ul>
+    <div class="legend__foot">
+      <span>NTS · Not to scale</span>
+      <span>{{ len $products }} product sheets</span>
+    </div>
+  </aside>
+</section>
+
+{{ partial "section-head.html" (dict "num" "1" "title" "Drawing register" "note" "Products we have built and run" "id" "register") }}
+<table class="reg">
+  <thead>
+    <tr>
+      <th scope="col">No.</th>
+      <th scope="col">Product</th>
+      <th scope="col">What it is</th>
+      <th scope="col">Stack</th>
+      <th scope="col">Status</th>
+      <th scope="col"></th>
+    </tr>
+  </thead>
+  <tbody>
+    {{ range $products }}{{ partial "product-row.html" . }}{{ end }}
+  </tbody>
+</table>
+<div class="reg__foot">
+  <span class="lbl">Status key: live · in build · open source · client work · internal</span>
+  <a class="btn" href="{{ "/products/" | relURL }}">Open the full register</a>
+</div>
+
+{{ partial "section-head.html" (dict "num" "2" "title" "Scope of works" "note" "Summary — see sheet 02 for the full specification" "id" "scope") }}
+<ol class="spec spec--grid">
+  <li class="spec__item">
+    <span class="spec__no">1.0</span>
+    <div>
+      <h3 class="spec__title">Web applications</h3>
+      <div class="spec__body"><p>Customer portals, storefronts, back-office systems and the admin tooling nobody budgets for. Server-rendered by default, with just enough JavaScript to feel instant.</p></div>
+    </div>
+  </li>
+  <li class="spec__item">
+    <span class="spec__no">2.0</span>
+    <div>
+      <h3 class="spec__title">Mobile apps</h3>
+      <div class="spec__body"><p>Installable progressive web apps that work on a till, a barista's phone or a warehouse scanner. Offline-tolerant where the job demands it. Native builds when the brief genuinely needs the hardware.</p></div>
+    </div>
+  </li>
+  <li class="spec__item">
+    <span class="spec__no">3.0</span>
+    <div>
+      <h3 class="spec__title">SaaS platforms</h3>
+      <div class="spec__body"><p>Multi-tenant systems with schema-level isolation, subscription billing, custom domains with automated certificates, and role-based access that holds up under audit.</p></div>
+    </div>
+  </li>
+  <li class="spec__item">
+    <span class="spec__no">4.0</span>
+    <div>
+      <h3 class="spec__title">Integrations</h3>
+      <div class="spec__body"><p>Yoco, PayFast, Stripe, Paystack, iKhokha and Stitch for payments. Twilio for WhatsApp. Xero and Sage for accounting. Courier APIs, espresso-machine telemetry and biometric terminals when the job calls for them.</p></div>
+    </div>
+  </li>
+  <li class="spec__item">
+    <span class="spec__no">5.0</span>
+    <div>
+      <h3 class="spec__title">Cloud &amp; delivery</h3>
+      <div class="spec__body"><p>AWS multi-account landing zones, ECS and RDS defined in CDK, GitHub Actions pipelines, and honest monitoring. Or a single well-kept VM when that is the right size.</p></div>
+    </div>
+  </li>
+  <li class="spec__item">
+    <span class="spec__no">6.0</span>
+    <div>
+      <h3 class="spec__title">Security &amp; AI features</h3>
+      <div class="spec__body"><p>Penetration-test remediation, row-level tenant isolation, MFA and append-only audit trails. AI where it earns its keep: document extraction, ticket triage, order parsing over WhatsApp.</p></div>
+    </div>
+  </li>
+</ol>
+<div class="reg__foot">
+  <span class="lbl">Clauses 1.0–7.0 in full on the services sheet</span>
+  <a class="btn" href="{{ "/services/" | relURL }}">Read the specification</a>
+</div>
+
+{{ partial "section-head.html" (dict "num" "3" "title" "Revision history" "note" "How a build runs, from brief to live" "id" "process") }}
+<table class="revs">
+  <thead>
+    <tr><th scope="col">Rev</th><th scope="col">Stage</th><th scope="col">What happens</th><th scope="col">You get</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td class="revs__rev">A</td>
+      <td class="revs__stage">Brief</td>
+      <td class="revs__desc">A conversation about the problem, not a deck about us. We ask what the software has to do on a busy Monday, who runs it, and what breaks today.</td>
+      <td class="revs__out">Written brief · rough sizing · a straight answer on fit</td>
+    </tr>
+    <tr>
+      <td class="revs__rev">B</td>
+      <td class="revs__stage">Drawing</td>
+      <td class="revs__desc">Scope, data model, screens and integrations drawn up before anything is built. Where the brief is fuzzy, a clickable prototype settles it.</td>
+      <td class="revs__out">Specification · prototype · fixed quote and schedule</td>
+    </tr>
+    <tr>
+      <td class="revs__rev">C</td>
+      <td class="revs__stage">Build</td>
+      <td class="revs__desc">Weekly ships to a staging URL you can use from the first week. Real data, real integrations in sandbox mode, and tests for the parts that handle money.</td>
+      <td class="revs__out">Staging environment · weekly demo · source in your repository</td>
+    </tr>
+    <tr>
+      <td class="revs__rev">D</td>
+      <td class="revs__stage">Live</td>
+      <td class="revs__desc">Deployment, monitoring, handover documentation and the option to keep us on to run it. We build things we would be willing to operate ourselves, because we usually do.</td>
+      <td class="revs__out">Production release · runbook · optional retainer</td>
+    </tr>
+  </tbody>
+</table>
+
+{{ partial "section-head.html" (dict "num" "4" "title" "General notes" "note" "Read in conjunction with all sheets" "id" "notes") }}
+<div class="notes notes--2col">
+  <ol class="notes__list">
+    <li>All work is drawn in South Africa and quoted in Rand. We work remotely with clients anywhere.</li>
+    <li>Django and PostgreSQL unless the brief gives a reason otherwise. Boring, documented and easy to hire for.</li>
+    <li>Every product in the register runs in production or is on its way there. Nothing here is a mock-up.</li>
+    <li>We also run a coffee business. Most of our products started as a problem behind our own counter.</li>
+    <li>Source code, infrastructure and data belong to the client. We do not hold anything hostage.</li>
+    <li>Estimates are estimates. Quotes are fixed. We tell you which one you are looking at.</li>
+  </ol>
+</div>
+
+{{ partial "rfq-band.html" . }}
+{{ end }}

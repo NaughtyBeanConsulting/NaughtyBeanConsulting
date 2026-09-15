@@ -1,0 +1,14 @@
+{{- /* System diagram rendered client-side from front matter. Usage: partial "diagram.html" (dict "diagram" .Params.diagram "fig" "2" "title" "System diagram") */ -}}
+{{- with .diagram -}}
+<figure class="fig fig--diagram">
+  <figcaption class="fig__cap"><span class="lbl">Fig. {{ $.fig }}</span> {{ $.title }}</figcaption>
+  <div class="fig__body diagram" data-diagram>
+    <script type="application/json">{{ . | jsonify | safeJS }}</script>
+    <noscript>
+      <ul class="diagram__fallback">
+        {{ range .nodes }}<li>{{ .label }}</li>{{ end }}
+      </ul>
+    </noscript>
+  </div>
+</figure>
+{{- end -}}

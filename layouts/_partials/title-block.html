@@ -1,0 +1,50 @@
+{{- $sheet := .Params.sheet | default (cond .IsHome "00" "—") -}}
+{{- $total := len site.Pages -}}
+{{- $rev := .Params.rev | default "A" -}}
+{{- $date := .Params.updated | default (cond .Lastmod.IsZero (now.Format "2006-01-02") (.Lastmod.Format "2006-01-02")) -}}
+<footer class="tb" aria-label="Title block">
+  <div class="tb__cell tb__cell--brand">
+    <span class="tb__big">Naughty Bean Consulting</span>
+    <span class="tb__small">Software engineering · South Africa</span>
+  </div>
+  <div class="tb__cell">
+    <span class="lbl">Title</span>
+    <span class="tb__val">{{ cond .IsHome "Index of sheets" .Title }}</span>
+  </div>
+  <div class="tb__cell">
+    <span class="lbl">Sheet</span>
+    <span class="tb__val tb__val--mono">{{ $sheet }} <span class="tb__of">of</span> {{ $total }}</span>
+  </div>
+  <div class="tb__cell">
+    <span class="lbl">Drawn</span>
+    <span class="tb__val tb__val--mono">{{ site.Params.drawnBy }}</span>
+  </div>
+  <div class="tb__cell">
+    <span class="lbl">Date</span>
+    <span class="tb__val tb__val--mono">{{ $date }}</span>
+  </div>
+  <div class="tb__cell">
+    <span class="lbl">Rev</span>
+    <span class="tb__val tb__val--mono">{{ $rev }}</span>
+  </div>
+  <div class="tb__cell">
+    <span class="lbl">Scale</span>
+    <span class="tb__val tb__val--mono">NTS</span>
+  </div>
+  <div class="tb__cell tb__cell--contact">
+    <span class="lbl">Contact</span>
+    <a class="tb__val" href="mailto:{{ site.Params.email }}">{{ site.Params.email }}</a>
+  </div>
+  <div class="tb__cell tb__cell--links">
+    <a href="{{ "/products/" | relURL }}">Products</a>
+    <a href="{{ "/services/" | relURL }}">Services</a>
+    <a href="{{ "/about/" | relURL }}">About</a>
+    <a href="{{ "/contact/" | relURL }}">Contact</a>
+    <a href="{{ "/privacy/" | relURL }}">Privacy</a>
+    <a href="{{ "/terms/" | relURL }}">Terms</a>
+    <a href="{{ site.Params.github }}" rel="noopener">GitHub</a>
+  </div>
+  <div class="tb__cell tb__cell--copy">
+    <span>&copy; <span data-year>{{ now.Year }}</span> Naughty Bean Consulting. Not to scale. Do not scale from this drawing.</span>
+  </div>
+</footer>
