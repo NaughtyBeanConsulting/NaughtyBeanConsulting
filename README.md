@@ -28,15 +28,26 @@ layouts/
   products/section.html   register table
   products/page.html      product sheet: description, diagram, notes, BOM
   services.html, about.html, contact.html
-  _partials/              head, header, title-block, stamp, section-head, diagram, product-row, rfq-band
+  _partials/              head, header, title-block, wordmark-stack, stamp, section-head, diagram, product-row, rfq-band
 static/
   css/site.css            the whole design system
   js/site.js              theme toggle, mobile nav, dimension lines, stamps
   js/diagram.js           renders system diagrams from front matter JSON
   js/contact.js           RFQ form submission with mailto fallback
-  img/                    favicons, og.png, product marks (webp)
+  img/                    logo, og.png, product marks (webp), master logo PNG
+  favicon.ico, *.png      favicon pack (16/32/96, apple-touch, android-chrome, maskable)
+  site.webmanifest        web app manifest
   CNAME                   custom domain
+tools/
+  icons.py                rebuilds the favicon pack + logo files from the master PNG
+  wordmark.py             outlines the name from Codec Pro into SVG paths
 ```
+
+## Brand
+
+The logo master is `static/img/Naughty_Bean_Consulting_Logo-removebg.png`. After changing it, run `python3 tools/icons.py` (Pillow) to rebuild the favicon pack, `img/logo.png` and `img/logo-128.webp`.
+
+The name "Naughty Bean Consulting" is set in **Codec Pro** (Zetafonts). The font file is never served: `tools/wordmark.py` (fonttools + uharfbuzz) outlines the lettering into the SVG paths in `layouts/_partials/wordmark-stack.html`, which inherit `currentColor` so they follow both themes. If you regenerate it, update the `aspect-ratio` on `.wordmark` in `site.css` to the value the script prints.
 
 ## Adding a product sheet
 

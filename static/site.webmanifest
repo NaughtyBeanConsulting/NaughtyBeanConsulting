@@ -1,0 +1,16 @@
+{
+  "name": "Naughty Bean Consulting",
+  "short_name": "Naughty Bean",
+  "description": "South African software engineering studio: web apps, mobile apps and multi-tenant SaaS platforms.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#f1ede3",
+  "theme_color": "#f1ede3",
+  "icons": [
+    { "src": "/android-chrome-192x192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "/android-chrome-512x512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "/maskable-icon-192x192.png", "sizes": "192x192", "type": "image/png", "purpose": "maskable" },
+    { "src": "/maskable-icon-512x512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}

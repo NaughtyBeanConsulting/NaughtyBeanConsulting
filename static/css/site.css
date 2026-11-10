@@ -165,15 +165,14 @@ p:last-child { margin-bottom: 0; }
   text-decoration: none;
 }
 .brand:hover { color: inherit; background: var(--red-soft); }
-.brand__mark { width: 34px; height: 34px; flex: none; }
-.brand__text { display: flex; flex-direction: column; line-height: 1; }
-.brand__name {
-  font-stretch: 78%; font-weight: 800; text-transform: uppercase;
-  font-size: 1.15rem; letter-spacing: 0.01em;
-}
-.brand__sub {
-  font-family: var(--font-mono); font-size: 0.6rem; letter-spacing: 0.22em;
-  text-transform: uppercase; color: var(--ink-2); margin-top: 0.3rem;
+.brand__mark { width: 40px; height: 40px; flex: none; }
+/* Wordmark: "Naughty Bean / Consulting" in Codec Pro, outlined (see _partials/wordmark-stack.html). */
+.wordmark { display: block; flex: none; width: auto; aspect-ratio: 6663 / 1847; }
+.brand__name { height: 32px; }
+
+.visually-hidden {
+  position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0;
 }
 
 .hdr__sheet {
@@ -536,7 +535,9 @@ p:last-child { margin-bottom: 0; }
 .tb__cell--copy { grid-area: copy; border-right: 0; border-bottom: 0; font-family: var(--font-mono); font-size: 0.66rem; letter-spacing: 0.04em; color: var(--ink-2); line-height: 1.45; }
 .tb__cell--links a { font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; text-decoration: none; }
 .tb__cell--links a:hover { text-decoration: underline; }
-.tb__big { font-stretch: 72%; font-weight: 800; text-transform: uppercase; font-size: clamp(1.6rem, 2.6vw, 2.3rem); line-height: 0.95; }
+.tb__big { display: flex; align-items: center; gap: 0.75rem; min-width: 0; }
+.tb__mark { width: 44px; height: 44px; flex: none; }
+.tb__wordmark { flex: 0 1 auto; width: 100%; max-width: 13rem; height: auto; min-width: 0; }
 .tb__small { font-family: var(--font-mono); font-size: 0.66rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-2); margin-top: 0.4rem; }
 .tb__val { font-weight: 600; font-stretch: 90%; font-size: 0.95rem; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .tb__val--mono { font-family: var(--font-mono); font-weight: 500; font-size: 0.85rem; }
@@ -729,7 +730,7 @@ a.tb__val:hover { text-decoration: underline; }
   .hdr__sheettitle { display: none; }
   .hdr__sheet > .lbl { display: none; }
   .hdr__sheet { padding: 0 0.9rem; }
-  .brand__name { font-size: 1rem; }
+  .brand__name { height: 28px; }
   .brand { padding-right: 0.9rem; }
   .tb {
     grid-template-columns: 1.4fr 1fr 1fr 1fr;
@@ -753,7 +754,8 @@ a.tb__val:hover { text-decoration: underline; }
   .hdr { grid-template-columns: auto 1fr auto; }
   .hdr__sheet { padding: 0 0.9rem; }
   .brand { padding-left: calc(var(--gutter) - var(--frame)); padding-right: 0.9rem; }
-  .brand__mark { width: 30px; height: 30px; }
+  .brand__mark { width: 34px; height: 34px; }
+  .brand__name { height: 26px; }
   .hero { grid-template-columns: minmax(0, 1fr); align-items: start; }
   .hero__title { font-size: clamp(3rem, 14vw, 6rem); }
   .prod__grid, .split, .contact__grid { grid-template-columns: minmax(0, 1fr); }

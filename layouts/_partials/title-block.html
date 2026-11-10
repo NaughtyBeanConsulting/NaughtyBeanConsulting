@@ -4,7 +4,7 @@
 {{- $date := .Params.updated | default (cond .Lastmod.IsZero (now.Format "2006-01-02") (.Lastmod.Format "2006-01-02")) -}}
 <footer class="tb" aria-label="Title block">
   <div class="tb__cell tb__cell--brand">
-    <span class="tb__big">Naughty Bean Consulting</span>
+    <span class="tb__big"><img class="tb__mark" src="{{ "img/logo-128.webp" | relURL }}" alt="" width="44" height="44" loading="lazy">{{ partial "wordmark-stack.html" "tb__wordmark" }}<span class="visually-hidden">Naughty Bean Consulting</span></span>
     <span class="tb__small">Software engineering · South Africa</span>
   </div>
   <div class="tb__cell">
