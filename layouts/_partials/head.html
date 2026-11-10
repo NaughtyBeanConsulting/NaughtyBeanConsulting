@@ -22,9 +22,13 @@
 <meta name="twitter:description" content="{{ $desc }}">
 <meta name="twitter:image" content="{{ $img }}">
 
-<link rel="icon" type="image/svg+xml" href="{{ "img/favicon.svg" | relURL }}">
-<link rel="icon" type="image/png" sizes="32x32" href="{{ "img/favicon-32.png" | relURL }}">
-<link rel="apple-touch-icon" href="{{ "img/apple-touch-icon.png" | relURL }}">
+<link rel="icon" href="{{ "favicon.ico" | relURL }}" sizes="48x48">
+<link rel="icon" type="image/png" sizes="16x16" href="{{ "favicon-16x16.png" | relURL }}">
+<link rel="icon" type="image/png" sizes="32x32" href="{{ "favicon-32x32.png" | relURL }}">
+<link rel="icon" type="image/png" sizes="96x96" href="{{ "favicon-96x96.png" | relURL }}">
+<link rel="apple-touch-icon" sizes="180x180" href="{{ "apple-touch-icon.png" | relURL }}">
+<link rel="manifest" href="{{ "site.webmanifest" | relURL }}">
+<meta name="apple-mobile-web-app-title" content="Naughty Bean">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -51,6 +55,8 @@
   "@type": "ProfessionalService",
   "name": "Naughty Bean Consulting",
   "url": "{{ site.BaseURL }}",
+  "logo": "{{ "img/logo.png" | absURL }}",
+  "image": "{{ "img/logo.png" | absURL }}",
   "email": "{{ site.Params.email }}",
   "description": {{ site.Params.description | jsonify }},
   "areaServed": "ZA",
